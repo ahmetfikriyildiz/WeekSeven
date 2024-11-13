@@ -25,7 +25,10 @@ namespace PratikBir
             // Çift olan sayılar
             var ciftSayilar = sayilar.Where(s => s % 2 == 0).ToList();
             Console.WriteLine("\nÇift Olan Sayılar:");
-            ciftSayilar.ForEach(s => Console.WriteLine(s));
+            foreach (var s in ciftSayilar)
+            {
+                Console.WriteLine(s);
+            }
 
             // Tek olan sayılar
             var tekSayilar = sayilar.Where(s => s % 2 != 0).ToList();
@@ -35,17 +38,23 @@ namespace PratikBir
             // Negatif sayılar
             var negatifSayilar = sayilar.Where(s => s < 0).ToList();
             Console.WriteLine("\nNegatif Sayılar:");
-            negatifSayilar.ForEach(s => Console.WriteLine(s));
+            foreach (var s in negatifSayilar)
+            {
+                Console.WriteLine(s);
+            }
 
             // Pozitif sayılar
             var pozitifSayilar = sayilar.Where(s => s > 0).ToList();
             Console.WriteLine("\nPozitif Sayılar:");
-            pozitifSayilar.ForEach(s => Console.WriteLine(s));
+            pozitifSayilar.ForEach(s => Console.WriteLine(s));  
 
             // 15'ten büyük ve 22'den küçük sayılar
             var aralikSayilar = sayilar.Where(s => s > 15 && s < 22).ToList();
             Console.WriteLine("\n15'ten Büyük ve 22'den Küçük Sayılar:");
-            aralikSayilar.ForEach(s => Console.WriteLine(s));
+            foreach (var s in aralikSayilar)
+            {
+                Console.WriteLine(s);
+            }
 
             // Listedeki her bir sayının karesi (Yeni liste)
             var kareler = sayilar.Select(s => s * s).ToList();
