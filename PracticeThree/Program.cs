@@ -15,11 +15,8 @@ namespace PracticeThree
     }
 
     // Yeni listede yalnızca Dizi Adı, Dizi Türü ve Yönetmen bilgilerini tutacak olan ComedyShow sınıfı
-    class ComedyShow
+    class ComedyShow : Show
     {
-        public string ShowName { get; set; }
-        public string ShowType { get; set; }
-        public string Director { get; set; }
 
         public ComedyShow(string showName, string showType, string director)
         {
@@ -76,15 +73,15 @@ namespace PracticeThree
                 });
 
                 // Kullanıcıya başka bir dizi ekleyip eklemeyeceğini sorma
-                Console.Write("Başka bir dizi eklemek istiyor musunuz? (Evet/Hayır): ");
+                Console.Write("Başka bir dizi eklemek istiyor musunuz? (e/h): ");
                 addAnother = Console.ReadLine()?.ToLower();
 
-            } while (addAnother == "evet");
+            } while (addAnother == "e");
 
             // Komedi türündeki dizilerden yeni bir liste oluşturma ve sıralı yazdırma
             Console.WriteLine("\nKomedi türündeki diziler: ");
             var comedyShows = shows
-                .Where(s => s.ShowType.ToLower().Contains("komedi")) // Büyük/küçük harf duyarlılığını kaldırdık
+                .Where(s => s.ShowType.ToLower().Contains("komedi")) 
                 .Select(s => new ComedyShow(s.ShowName, s.ShowType, s.Director))
                 .OrderBy(s => s.ShowName)
                 .ThenBy(s => s.Director)
