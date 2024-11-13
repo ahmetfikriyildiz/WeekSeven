@@ -8,11 +8,12 @@ namespace PracticeTwo
 {
     class Singer
     {
+        //Şarkıcıların özellikleri
         public string FullName { get; set; }
         public string Genre { get; set; }
         public int ReleaseYear { get; set; }
         public int RecordSales { get; set; }
-
+        //Şarkıcıların özelliklerini yazdırma
         public override string ToString()
         {
             return $"FullName: {FullName}, Genre: {Genre}, ReleaseYear: {ReleaseYear},RecordsSale: {RecordSales}";
@@ -23,6 +24,7 @@ namespace PracticeTwo
     {
         static void Main(string[] args)
         {
+            //Şarkıcılar listesi
             var singer = new List<Singer>
             {
 
@@ -39,28 +41,28 @@ namespace PracticeTwo
             new Singer { FullName = "Neşet Ertaş", Genre = "Türk Halk Müziği / Türk Sanat Müziği", ReleaseYear = 1960, RecordSales = 2000000 }
 
             };
-            
+            // Adı 'S' ile başlayan şarkıcılar
             Console.WriteLine("Adı 'S' ile başlıyan şarkıcılar: ");
             var sSinger = singer.Where(s => s.FullName.StartsWith("S")).ToList();
-            sSinger.ForEach(s => Console.WriteLine(s));
-
+            sSinger.ForEach(s => Console.WriteLine(s.FullName));
+            // Albüm satışları 10 milyonun üzerinde olan şarkıcılar
             Console.WriteLine("\nAlbüm satışları 10 milyon'un üzerinde olan şarkıcılar");
             var recordSales = singer.Where(s => s.RecordSales > 10000000).ToList();
-            recordSales.ForEach(s => Console.WriteLine(s));
-
+            recordSales.ForEach(s => Console.WriteLine($"{s.FullName} , {s.RecordSales}"));
+            // 2000 yılı öncesi çıkış yapmış ve pop müzik yapan şarkıcılar (Çıkış yıllarına göre gruplayarak, alfabetik bir sıra ile yazdırma)
             Console.WriteLine("\n2000 yılı öncesi çıkış yapmış ve pop müzik yapan şarkıcılar. ( Çıkış yıllarına göre gruplayarak, alfabetik bir sıra ile yazdırınız.");
             var popSinger = singer.Where(s => s.ReleaseYear < 2000 && s.Genre == "Pop").OrderBy(s => s.FullName).ToList();
-            popSinger.ForEach(s => Console.WriteLine(s));
-
+            popSinger.ForEach(s => Console.WriteLine($"{s.FullName} , {s.Genre} , {s.ReleaseYear}"));
+            // En çok albüm satan şarkıcı
             Console.WriteLine("\nEn çok albüm satan şarkıcı");
             var mostRecordSales = singer.OrderByDescending(s => s.RecordSales).First();
-            Console.WriteLine(mostRecordSales);
-
+            Console.WriteLine($"{mostRecordSales.FullName} , {mostRecordSales.RecordSales}");
+            // En yeni çıkış yapan ve en eski çıkış yapan şarkıcılar
             Console.WriteLine("\nEn yeni çıkış yapan şarkıcı ve en eski çıkış yapan şarkıcı");
             var newestSinger = singer.OrderByDescending(s => s.ReleaseYear).First();
             var oldestSinger = singer.OrderBy(s => s.ReleaseYear).First();
-            Console.WriteLine("En yeni çıkış yapan şarkıcı: " + newestSinger);
-            Console.WriteLine("En eski çıkış yapan şarkıcı: " + oldestSinger);
+            Console.WriteLine("En yeni çıkış yapan şarkıcı: " + newestSinger.FullName);
+            Console.WriteLine("En eski çıkış yapan şarkıcı: " + oldestSinger.FullName);
 
             Console.ReadKey();
         }
